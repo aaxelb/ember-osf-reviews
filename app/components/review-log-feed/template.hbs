@@ -1,0 +1,12 @@
+{{#each logs key='id' as |log|}}
+    {{review-log-feed-entry log=log}}
+{{/each}}
+{{#if loadingPage}}
+    <div class='loading'>
+        {{fa-icon 'spinner' pulse=true size=3}}
+    </div>
+{{else if moreLogs}}
+    <div class='more-logs'>
+        <a role='button' {{action 'nextPage'}}>See more</a>
+    </div>
+{{/if}}

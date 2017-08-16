@@ -1,5 +1,27 @@
 <div class="reviews-page"> {{!INDEX}}
-    {{!HEADER}}
+    {{#if showDashboard}}
+        <div class='reviews-dashboard'>
+            <div class='reviews-dashboard-header'>
+                <div class='container'>
+                    <div class='row'>
+                        <div class="text-center m-t-lg col-xs-12">
+                            <h1>Reviews Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='container'>
+                <div class='row'>
+                    <div class='col-sm-8'>
+                        {{review-log-feed}}
+                    </div>
+                    <div class='col-sm-4'>
+                        {{dashboard-sidebar providers=model}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{else}} {{!not showDashboard}}
     <div class="reviews-header"> {{!HEADER}}
         <div class="container"> {{!CONTAINER}}
             <div class="row">{{!HEADER ROW}}
@@ -63,4 +85,5 @@
             <div class="col-md-3"></div>
         </div> {{!END CONTAINER}}
     </div> {{!END CONTACT}}
+    {{/if}} {{!END not showDashboard}}
 </div> {{!END INDEX}}
