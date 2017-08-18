@@ -1,6 +1,14 @@
 import Ember from 'ember';
 
-
+/**
+ * A feed of recent reviews events for all providers the user has access to
+ *
+ * Sample usage:
+ * ```handlebars
+ * {{review-log-feed}}
+ * ```
+ * @class review-log-feed
+ */
 export default Ember.Component.extend({
     store: Ember.inject.service(),
     toast: Ember.inject.service(),
@@ -29,7 +37,8 @@ export default Ember.Component.extend({
                     loadingPage: null,
                 });
             }
-        }, (errorResponse) => {
+        }, () => {
+            // Error
             this.set('loadingPage', null);
             this.get('toast').error('Error fetching more events');
         });

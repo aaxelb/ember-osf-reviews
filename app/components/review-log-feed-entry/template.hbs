@@ -1,14 +1,17 @@
-<div class='icon {{iconClass}}'>
-    <i class='fa {{icon}}'></i>
-</div>
-<div class='log-body'>
-    <div class='log-date'>
-        {{moment-calendar log.dateCreated}}
+<div class='entry-body'>
+    <div class='icon {{iconClass}}'>
+        <i class='fa {{icon}}'></i>
     </div>
-    <div class='log-heading'>
-        {{message}}
-    </div>
-    <div class='log-detail'>
-        {{log.reviewable.title}} blah blah title title
+    <div class='log-body'>
+        <div class='log-date'>
+            {{moment-format log.dateCreated 'MMMM D, Y'}}
+        </div>
+        <div class='log-heading'>
+            <a href={{log.creator.links.html}}>{{log.creator.fullName}}</a> {{message}}
+        </div>
+        <div class='log-detail'>
+            {{!TODO make title a link to detail page}}
+            {{log.reviewable.title}}
+        </div>
     </div>
 </div>

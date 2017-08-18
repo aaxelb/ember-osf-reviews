@@ -19,8 +19,21 @@ const CLASS_NAMES = Object.freeze({
     [EDIT_COMMENT]: 'edit-comment-icon',
 });
 
+/**
+ * Display a single review log on the dashboard feed
+ *
+ * Sample usage:
+ * ```handlebars
+ * {{review-log-feed-entry log=log}}
+ * ```
+ * @class review-log-feed-entry
+ */
 export default Ember.Component.extend({
     classNames: ['review-log-feed-entry'],
+
+    click() {
+        alert(`TODO: transition to detail for ${this.get('log.reviewable.id')}`);
+    },
 
     iconClass: Ember.computed('log.action', function() {
         return CLASS_NAMES[this.get('log.action')];
@@ -30,17 +43,17 @@ export default Ember.Component.extend({
         return ICONS[this.get('log.action')];
     }),
 
-    message: Ember.computed('log.toState', 'log.creator.fullName', 'log.provider.name', function() {
+    message: Ember.computed('log.toState', 'log.provider.name', function() {
         // TODO i18n
         switch (this.get('log.action')) {
             case SUBMIT:
-                return `${this.get('log.creator.fullName')} submitted a preprint to ${this.get('log.provider.name')}`;
+                return `submitted a ${this.get('log.provider.preprintWord')} to ${this.get('log.provider.name')}`;
             case ACCEPT:
-                return `${this.get('log.creator.fullName')} accepted a preprint in ${this.get('log.provider.name')}`;
+                return `accepted a ${this.get('log.provider.preprintWord')} in ${this.get('log.provider.name')}`;
             case REJECT:
-                return `${this.get('log.creator.fullName')} rejected a preprint from ${this.get('log.provider.name')}`;
+                return `rejected a ${this.get('log.provider.preprintWord')} from ${this.get('log.provider.name')}`;
             case EDIT_COMMENT:
-                return `${this.get('log.creator.fullName')} edited the comment of a ${this.get('log.toState')} preprint in ${this.get('log.provider.name')}`;
+                return `edited the comment for a ${this.get('log.provider.preprintWord')} in ${this.get('log.provider.name')}`;
         }
         // TODO error
     }),

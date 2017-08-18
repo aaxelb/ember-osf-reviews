@@ -2,7 +2,22 @@
     Providers
 </div>
 <div class='sidebar-body'>
-    {{#each providers as |provider|}}
-        <div>{{provider.name}}</div>
-    {{/each}}
+    <ul class='fa-ul'>
+        {{#each providers as |provider|}}
+            <li class='{{if provider.reviewsWorkflow "moderation-enabled" "moderation-disabled"}}'>
+                <span class='provider-name'>
+                    <i class='fa-li fa {{get iconMap provider.preprintWord}}'></i>
+                    {{provider.name}}
+                </span>
+                <ul class='provider-links'>
+                    {{#if provider.reviewsWorkflow}}
+                        <li>Moderation</li>
+                        <li>Settings</li>
+                    {{else}}
+                        <li>Set up moderation</li>
+                    {{/if}}
+                </ul>
+            </li>
+        {{/each}}
+    </ul>
 </div>

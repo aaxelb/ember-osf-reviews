@@ -4,21 +4,9 @@
 @import 'variables';
 @import 'hint';
 
-
-$color-action-submit: #CABC14;
-$color-action-accept: #5CB85C;
-$color-action-reject: #D9534F;
-$color-action-edit-comment: #337ab7;
-
-$color-text-black: #151515;
-$color-text-dark-grey: #333333;
-$color-text-medium-grey: #555555;
-$color-text-light-grey: #777777;
-
-$color-bg-light-grey: #EFEFEF;
-$color-bg-cool-grey: #F3F5F7;
-
-$color-border-light-grey: #D9D9D9;
+body {
+    font-family: 'Helvetica Neue', 'Helvetica', sans-serif !important;
+}
 
 /* Override styles from ember-osf and osf */
 .footer {
@@ -260,6 +248,7 @@ li.active > a {
 
 .column-offset {
   height: 120px;
+}
 
 
 /* Dashboard page */
@@ -275,6 +264,8 @@ li.active > a {
 }
 
 .review-log-feed {
+    padding: 20px 0;
+
     .loading {
         text-align: center;
         margin-top: 30px;
@@ -287,7 +278,15 @@ li.active > a {
 
 .review-log-feed-entry {
     clear: both;
-    margin-top: 41px;
+
+    .entry-body {
+        padding: 20px 15px;
+    }
+
+    :hover {
+        background: $color-bg-light-grey;
+        cursor: pointer;
+    }
 
     .submit-icon {
         color: $color-action-submit;
@@ -316,6 +315,7 @@ li.active > a {
     .log-heading {
         color: $color-text-black;
         font-size: 18px;
+        font-weight: bold;
         margin-left: 30px;
         line-height: 23px;
     }
@@ -332,7 +332,7 @@ li.active > a {
 
     .sidebar-header {
         font-size: 24px;
-        color: $color-grey-text;
+        color: $color-text-dark-grey;
         background: $color-bg-light-grey;
         border: 1px solid $color-border-light-grey;
         padding: 11px 0 16px 27px;
@@ -340,7 +340,26 @@ li.active > a {
 
     .sidebar-body {
         background: white;
-        border: 1px solid $color-border-light;
+        border: 1px solid $color-border-light-grey;
+        padding: 25px 29px;
+        font-size: 20px;
+
+        .moderation-enabled {
+            color: $color-text-dark-grey;
+        }
+
+        .moderation-disabled {
+            color: $color-text-light-grey;
+        }
+
+        .provider-links {
+            list-style-type: none;
+            padding-left: 14px;
+        }
+
+        .provider-name {
+            font-weight: bold;
+        }
     }
 }
 

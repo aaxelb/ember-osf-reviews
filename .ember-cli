@@ -1,3 +1,4 @@
 {
-  "port": 4400
+  "port": 4400,
+  "live-reload-port": 41954
 }
