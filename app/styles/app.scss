@@ -321,7 +321,7 @@ li.active > a {
     }
 
     .log-detail {
-        color: $color-text-medium-grey;
+        color: $color-text-dark-grey;
         font-size: 16px;
         margin-left: 30px;
     }
@@ -332,7 +332,7 @@ li.active > a {
 
     .sidebar-header {
         font-size: 24px;
-        color: $color-text-dark-grey;
+        color: $color-text-black;
         background: $color-bg-light-grey;
         border: 1px solid $color-border-light-grey;
         padding: 11px 0 16px 27px;
@@ -345,7 +345,7 @@ li.active > a {
         font-size: 20px;
 
         .moderation-enabled {
-            color: $color-text-dark-grey;
+            color: $color-text-black;
         }
 
         .moderation-disabled {
