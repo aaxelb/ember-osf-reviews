@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { translationMacro as t } from 'ember-i18n';
 
 /**
  * A feed of recent reviews events for all providers the user has access to
@@ -14,6 +15,8 @@ export default Ember.Component.extend({
     toast: Ember.inject.service(),
 
     classNames: ['review-log-feed'],
+
+    errorMessage: t('dashboard.error_loading'),
 
     moreLogs: Ember.computed('totalPages', 'page', function() {
         return this.get('page') < this.get('totalPages');
@@ -40,7 +43,7 @@ export default Ember.Component.extend({
         }, () => {
             // Error
             this.set('loadingPage', null);
-            this.get('toast').error('Error fetching more events');
+            this.get('toast').error(this.get('errorMessage'));
         });
     },
 

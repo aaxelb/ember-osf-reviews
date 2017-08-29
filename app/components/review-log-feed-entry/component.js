@@ -43,18 +43,7 @@ export default Ember.Component.extend({
         return ICONS[this.get('log.action')];
     }),
 
-    message: Ember.computed('log.toState', 'log.provider.name', function() {
-        // TODO i18n
-        switch (this.get('log.action')) {
-            case SUBMIT:
-                return `submitted a ${this.get('log.provider.preprintWord')} to ${this.get('log.provider.name')}`;
-            case ACCEPT:
-                return `accepted a ${this.get('log.provider.preprintWord')} in ${this.get('log.provider.name')}`;
-            case REJECT:
-                return `rejected a ${this.get('log.provider.preprintWord')} from ${this.get('log.provider.name')}`;
-            case EDIT_COMMENT:
-                return `edited the comment for a ${this.get('log.provider.preprintWord')} in ${this.get('log.provider.name')}`;
-        }
-        // TODO error
+    message_key: Ember.computed('log.action', function() {
+        return `dashboard.log_message.${this.get('log.action')}`;
     }),
 });

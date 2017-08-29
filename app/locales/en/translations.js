@@ -51,4 +51,22 @@ export default {
         report: `If this should not have occurred and the issue persists, please report it to`,
         go_to: `Go to OSF Reviews`
     }
+    dashboard: {
+        title: `Reviews Dashboard`,
+        log_message: {
+            // TODO: change ember-osf to allow multiple providers on the same page, so we can use {{preprintWords.preprint}} instead
+            submit: `submitted a {{provider.preprintWord}} to {{provider.name}}`,
+            accept: `accepted a {{provider.preprintWord}} in {{provider.name}}`,
+            reject: `rejected a {{provider.preprintWord}} from {{provider.name}}`,
+            edit_comment: `edited the comment for a {{provider.preprintWord}} in {{provider.name}}`,
+        },
+        see_more: `See more`,
+        error_loading: `Error fetching more events`,
+        sidebar: {
+            providers: `Providers`,
+            moderation: `Moderation`,
+            settings: `Settings`,
+            set_up: `Set up moderation`,
+        },
+    },
 };

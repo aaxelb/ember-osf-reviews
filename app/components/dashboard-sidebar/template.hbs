@@ -1,5 +1,5 @@
 <div class='sidebar-header'>
-    Providers
+    {{t 'dashboard.sidebar.providers'}}
 </div>
 <div class='sidebar-body'>
     <ul class='fa-ul'>
@@ -11,10 +11,10 @@
                 </span>
                 <ul class='provider-links'>
                     {{#if provider.reviewsWorkflow}}
-                        <li>Moderation</li>
-                        <li>Settings</li>
+                        <li>{{t 'dashboard.sidebar.moderation'}}</li>
+                        <li>{{t 'dashboard.sidebar.settings'}}</li>
                     {{else}}
-                        <li>Set up moderation</li>
+                        <li>{{t 'dashboard.sidebar.set_up'}}</li>
                     {{/if}}
                 </ul>
             </li>
