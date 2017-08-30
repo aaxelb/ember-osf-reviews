@@ -5,6 +5,9 @@ dist: trusty
 addons:
   chrome: stable
 
+node_js:
+    6
+
 env:
   global:
   - SUPPRESS_NO_CONFIG_WARNING=true
