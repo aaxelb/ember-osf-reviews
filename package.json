@@ -12,7 +12,9 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test",
+    "check-style": "eslint .",
+    "test": "yarn run check-style && ember test",
+    "test:cover": "COVERAGE=true yarn test",
     "postinstall": "npm rebuild node-sass"
   },
   "devDependencies": {
