@@ -1,20 +1,20 @@
-<div class='sidebar-header'>
+<div class="sidebar-header">
     {{t 'dashboard.sidebar.providers'}}
 </div>
-<div class='sidebar-body'>
-    <ul class='fa-ul'>
+<div class="sidebar-body">
+    <ul class="fa-ul">
         {{#each providers as |provider|}}
-            <li class='{{if provider.reviewsWorkflow "moderation-enabled" "moderation-disabled"}}'>
-                <span class='provider-name'>
-                    <i class='fa-li fa {{get iconMap provider.preprintWord}}'></i>
+            <li class="{{if provider.reviewsWorkflow "moderation-enabled" "moderation-disabled"}}">
+                <span class="provider-name">
+                    <i class="fa-li fa {{get iconMap provider.preprintWord}}"></i>
                     {{provider.name}}
                 </span>
-                <ul class='provider-links'>
+                <ul class="provider-links">
                     {{#if provider.reviewsWorkflow}}
-                        <li>{{t 'dashboard.sidebar.moderation'}}</li>
-                        <li>{{t 'dashboard.sidebar.settings'}}</li>
+                        <li>{{#link-to 'provider.moderation' provider}}{{t 'dashboard.sidebar.moderation'}}{{/link-to}}</li>
+                        <li>{{#link-to 'provider.settings' provider}}{{t 'dashboard.sidebar.settings'}}{{/link-to}}</li>
                     {{else}}
-                        <li>{{t 'dashboard.sidebar.set_up'}}</li>
+                        <li>{{#link-to 'provider.setup' provider}}{{t 'dashboard.sidebar.set_up'}}{{/link-to}}</li>
                     {{/if}}
                 </ul>
             </li>

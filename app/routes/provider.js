@@ -11,8 +11,8 @@ import Ember from 'ember';
 export default Ember.Route.extend({
     theme: Ember.inject.service(),
     model(params, transition) {
-        const {slug = ''} = transition.params.provider;
-        const slugLower = slug.toLowerCase();
+        const {provider_id = ''} = transition.params.provider;
+        const slugLower = provider_id.toLowerCase();
         return this.store.find('preprint-provider', slugLower).then((provider) =>{
             this.set('theme.id', provider.id);
         }).catch(() =>{

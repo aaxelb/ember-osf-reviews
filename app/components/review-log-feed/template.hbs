@@ -1,5 +1,5 @@
 {{#each logs key='id' as |log|}}
-    {{review-log-feed-entry log=log}}
+    {{review-log-feed-entry log=log toDetail=toDetail}}
 {{/each}}
 {{#if loadingPage}}
     <div class='loading'>

@@ -32,7 +32,7 @@ export default Ember.Component.extend({
                 name: crumb
             }
         });
-        return [{path: 'dashboard', name: 'Reviews Dashboard'}].concat(breadedCrumbs)
+        return [{path: 'index', name: 'Reviews Dashboard'}].concat(breadedCrumbs)
     }),
     actions: {
         toggleTab: function () {

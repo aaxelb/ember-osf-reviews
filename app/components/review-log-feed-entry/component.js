@@ -29,10 +29,15 @@ const CLASS_NAMES = Object.freeze({
  * @class review-log-feed-entry
  */
 export default Ember.Component.extend({
+    i18n: Ember.inject.service(),
+
     classNames: ['review-log-feed-entry'],
 
-    click() {
-        alert(`TODO: transition to detail for ${this.get('log.reviewable.id')}`);
+    click(event) {
+        if (!event.originalEvent.target.href) {
+            this.get('toDetail')(this.get('log.reviewable'));
+            return true;
+        }
     },
 
     iconClass: Ember.computed('log.action', function() {
@@ -43,7 +48,11 @@ export default Ember.Component.extend({
         return ICONS[this.get('log.action')];
     }),
 
-    message_key: Ember.computed('log.action', function() {
+    messageKey: Ember.computed('log.action', function() {
         return `dashboard.log_message.${this.get('log.action')}`;
+    }),
+
+    documentType: Ember.computed('log.provider.preprintWord', function() {
+        return this.get('i18n').t(`documentType.${this.get('log.provider.preprintWord')}.singular`);
     }),
 });
