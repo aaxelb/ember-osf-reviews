@@ -31,8 +31,6 @@ const CLASS_NAMES = Object.freeze({
 export default Ember.Component.extend({
     i18n: Ember.inject.service(),
 
-    classNames: ['review-log-feed-entry'],
-
     click(event) {
         if (!event.originalEvent.target.href) {
             this.get('toDetail')(this.get('log.reviewable'));

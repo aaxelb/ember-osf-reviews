@@ -27,8 +27,7 @@ export default Ember.Component.extend({
             name: this.get('i18n').t('dashboard.title'),
             path: 'index',
         }];
-        const routeContexts = this.get('navigator.routeContexts');
-        for (const r of routeContexts) {
+        for (const r of this.get('navigator.routeContexts')) {
             // Skip crumbs with no context
             if (Ember.isEmpty(r.context) || !Object.keys(r.context).length) continue;
 

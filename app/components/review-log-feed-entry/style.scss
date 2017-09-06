@@ -1,0 +1,53 @@
+& {
+    clear: both;
+
+    .entry-body {
+        padding: 20px 15px;
+    }
+
+    :hover {
+        background: $color-bg-light-grey;
+        cursor: pointer;
+    }
+
+    .submit-icon {
+        color: $color-action-submit;
+    }
+    .accept-icon {
+        color: $color-action-accept;
+    }
+    .reject-icon {
+        color: $color-action-reject;
+    }
+    .edit-comment-icon {
+        color: $color-action-edit-comment;
+    }
+
+    .icon {
+        float: left;
+        font-size: 20px;
+    }
+
+    .log-date {
+        color: $color-text-light-grey;
+        font-size: 16px;
+        margin-left: 30px;
+    }
+
+    .log-heading {
+        color: $color-text-black;
+        font-size: 18px;
+        font-weight: bold;
+        margin-left: 30px;
+        line-height: 23px;
+    }
+
+    .log-detail {
+        margin-left: 30px;
+
+        a {
+            color: $color-text-dark-grey;
+            font-size: 16px;
+        }
+    }
+}
