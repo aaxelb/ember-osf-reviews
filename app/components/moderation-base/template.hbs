@@ -3,15 +3,11 @@
         <div class="row">{{!HEADER ROW}}
             <div class="text-left p-l-lg col-md-12">
                 <p>
-                    {{#each breadCrumbs as |breadCrumb|}}
-                        {{#if (eq breadCrumb.name 'provider')}}
-                            <b>{{theme.provider.name}}</b>
-                        {{else}}
-                            {{#link-to breadCrumb.path}}
-                                {{breadCrumb.name}}
-                            {{/link-to}}
-                        {{/if}}
-                        {{#unless (eq breadCrumb breadCrumbs.lastObject)}}
+                    {{#each breadcrumbs as |breadcrumb|}}
+                        {{#link-to breadcrumb.path}}
+                            {{breadcrumb.name}}
+                        {{/link-to}}
+                        {{#unless (eq breadcrumb breadcrumbs.lastObject)}}
                             <img class="separator">
                         {{/unless}}
                     {{/each}}

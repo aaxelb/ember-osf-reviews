@@ -18,22 +18,30 @@ export default Ember.Component.extend({
         return [
             { name: this.get('i18n').t('moderation_base.moderation_tab'), route: 'preprints.provider.moderation'},
             { name: this.get('i18n').t('moderation_base.settings_tab'), route: 'preprints.provider.settings'},
-        ]}),
-    breadCrumbs: Ember.computed('navigator.currentPath', function(){
-        let crumbs = this.get('navigator.currentPath').split('.');
-        crumbs.popObject();
-        if(this.get('navigator.isIndexRoute')){
-            crumbs.popObject(); //get rid of the index route at end
-        }
-        const breadedCrumbs = crumbs.map(function(crumb, index){
-            const path = crumbs.slice(0, index + 1).join('.');
-            return {
-                path: path == '' ? 'index' : path,
-                name: crumb
-            }
-        });
-        return [{path: 'index', name: 'Reviews Dashboard'}].concat(breadedCrumbs)
+        ];
     }),
+
+    breadcrumbs: Ember.computed('navigator.currentPath', function(){
+        // Always include the dashboard breadcrumb
+        const breadcrumbs = [{
+            name: this.get('i18n').t('dashboard.title'),
+            path: 'index',
+        }];
+        const routeContexts = this.get('navigator.routeContexts');
+        for (const r of routeContexts) {
+            // Skip crumbs with no context
+            if (Ember.isEmpty(r.context) || !Object.keys(r.context).length) continue;
+
+            // Skip crumbs with the same context as the prior crumb
+            if (r.context === breadcrumbs[breadcrumbs.length - 1].context) continue;
+
+            // Prefer model name or title, fall back to the route name
+            r.name = (r.context.get && (r.context.get('name') || r.context.get('title'))) || r.part;
+            breadcrumbs.push(r);
+        }
+        return breadcrumbs;
+    }),
+
     actions: {
         toggleTab: function () {
             if (this.get('active') == 'Moderation'){
