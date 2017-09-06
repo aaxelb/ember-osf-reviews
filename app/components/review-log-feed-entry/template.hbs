@@ -8,10 +8,10 @@
         </div>
         <div class="log-heading">
             <a href={{log.creator.links.html}}>{{log.creator.fullName}}</a>
-            {{t messageKey provider=log.provider.name document=documentType}}
+            {{message}}
         </div>
         <div class="log-detail">
-            {{#link-to 'provider.preprint_detail' log.provider log.reviewable}}
+            {{#link-to 'preprints.provider.preprint_detail' log.provider log.reviewable}}
                 {{log.reviewable.title}}
             {{/link-to}}
         </div>

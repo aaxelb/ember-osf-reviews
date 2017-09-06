@@ -14,7 +14,7 @@ export default {
         preprint: {
             pluralCapitalized: `Preprints`,
             plural: `preprints`,
-            singluar: `preprint`,
+            singular: `preprint`,
             singularCapitalized: `Preprint`,
         }
     },
@@ -36,11 +36,6 @@ export default {
                 post_moderation: `Post-moderation`
             }
         },
-        contact: {
-            title: `Want to start a moderated service?`,
-            paragraph: `Create your own branded preprint servers backed by the OSF. Check out the open source code and the requirements and road map. Input welcome!`,
-            contact_us: `Contact us`
-        }
     },
     moderation_base: {
         moderation_tab: `Moderation`,
@@ -111,10 +106,10 @@ export default {
     dashboard: {
         title: `Reviews Dashboard`,
         log_message: {
-            submit: `submitted a {{document}} to {{provider}}`,
-            accept: `accepted a {{document}} in {{provider}}`,
-            reject: `rejected a {{document}} from {{provider}}`,
-            edit_comment: `edited the comment for a {{document}} in {{provider}}`,
+            submit: `submitted a {{documentType}} to {{providerName}}`,
+            accept: `accepted a {{documentType}} in {{providerName}}`,
+            reject: `rejected a {{documentType}} from {{providerName}}`,
+            edit_comment: `edited the comment for a {{documentType}} in {{providerName}}`,
         },
         see_more: `See more`,
         error_loading: `Error fetching more events`,
@@ -125,4 +120,16 @@ export default {
             set_up: `Set up moderation`,
         },
     },
+    contactBar: {
+        startService: {
+            title: `Want to start a moderated service?`,
+            paragraph: `Create your own branded preprint servers backed by the OSF. Check out the open source code and the requirements and road map. Input welcome!`,
+            button: `Contact us`
+        },
+        feedback: {
+            title: `Send us your thoughts`,
+            paragraph: `Help us make OSFReviews even better. Let us know your thoughts and comments about our beta version of OSFReviews.`,
+            button: `Send feedback`
+        },
+    }
 };

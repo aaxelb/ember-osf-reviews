@@ -4,7 +4,7 @@ export default Ember.Controller.extend({
     session: Ember.inject.service(),
     currentUser: Ember.inject.service(),
 
-    showSetup: Ember.computed.bool('providersToSetup'),
+    showSetup: Ember.computed.notEmpty('providersToSetup'),
 
     providersToSetup: Ember.computed('model.[]', function() {
         return this.get('model').filter(provider =>
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
 
     actions: {
         transitionToDetail(reviewable) {
-            this.transitionToRoute('provider.preprint_detail', [reviewable.get('provider'), reviewable]);
+            this.transitionToRoute('preprints.provider.preprint_detail', [reviewable.get('provider'), reviewable]);
         },
         setupProvider(provider) {
             this.transitionToRoute('preprints.provider.setup', provider);

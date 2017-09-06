@@ -70,20 +70,6 @@
   }
 }
 
-.reviews-contact{
-  background: white;
-  padding-top: 30px;
-  padding-bottom: 30px;
-  color: #333333;
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  h4 {
-    font-size: 21px;
-  }
-}
-
 .reviews-workflow-figure1 {
   content: url('img/post-moderation-workflow.png');
   display: block;
@@ -285,42 +271,6 @@ column-offset {
         color: $color-text-dark-grey;
         font-size: 16px;
         margin-left: 30px;
-    }
-}
-
-.dashboard-sidebar {
-    padding-top: 41px;
-
-    .sidebar-header {
-        font-size: 24px;
-        color: $color-text-black;
-        background: $color-bg-light-grey;
-        border: 1px solid $color-border-light-grey;
-        padding: 11px 0 16px 27px;
-    }
-
-    .sidebar-body {
-        background: white;
-        border: 1px solid $color-border-light-grey;
-        padding: 25px 29px;
-        font-size: 20px;
-
-        .moderation-enabled {
-            color: $color-text-black;
-        }
-
-        .moderation-disabled {
-            color: $color-text-light-grey;
-        }
-
-        .provider-links {
-            list-style-type: none;
-            padding-left: 14px;
-        }
-
-        .provider-name {
-            font-weight: bold;
-        }
     }
 }
 
