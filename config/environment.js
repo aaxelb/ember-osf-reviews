@@ -51,17 +51,17 @@ module.exports = function(environment) {
     };
 
     if (environment === 'development') {
-
+        // Empty
     }
 
     if (environment === 'test') {
-
+        // Empty
     }
 
     if (environment === 'production') {
-
+        // Empty
     } else {
-
+        // Empty
     }
 
     return ENV;
