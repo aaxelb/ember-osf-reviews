@@ -122,7 +122,7 @@ export default {
     },
     dashboard: {
         title: `Reviews Dashboard`,
-        log_message: {
+        action_message: {
             submit: `submitted a {{documentType}} to {{providerName}}`,
             accept: `accepted a {{documentType}} in {{providerName}}`,
             reject: `rejected a {{documentType}} from {{providerName}}`,

@@ -20,37 +20,37 @@ const CLASS_NAMES = Object.freeze({
 });
 
 /**
- * Display a single review log on the dashboard feed
+ * Display a single action on the dashboard feed
  *
  * Sample usage:
  * ```handlebars
- * {{review-log-feed-entry log=log}}
+ * {{action-feed-entry action=action}}
  * ```
- * @class review-log-feed-entry
+ * @class action-feed-entry
  */
 export default Ember.Component.extend({
     i18n: Ember.inject.service(),
 
     click(event) {
         if (!event.originalEvent.target.href) {
-            this.get('toDetail')(this.get('log.provider'), this.get('log.reviewable'));
+            this.get('toDetail')(this.get('action.provider'), this.get('action.target'));
             return true;
         }
     },
 
-    iconClass: Ember.computed('log.action', function() {
-        return CLASS_NAMES[this.get('log.action')];
+    iconClass: Ember.computed('action.actionTrigger', function() {
+        return CLASS_NAMES[this.get('action.actionTrigger')];
     }),
 
-    icon: Ember.computed('log.action', function() {
-        return ICONS[this.get('log.action')];
+    icon: Ember.computed('action.actionTrigger', function() {
+        return ICONS[this.get('action.actionTrigger')];
     }),
 
-    message: Ember.computed('log.action', 'log.provider', function() {
+    message: Ember.computed('action.actionTrigger', 'action.provider', function() {
         const i18n = this.get('i18n');
-        return i18n.t(`dashboard.log_message.${this.get('log.action')}`, {
-            providerName: this.get('log.provider.name'),
-            documentType: i18n.t(`documentType.${this.get('log.provider.preprintWord')}.singular`),
+        return i18n.t(`dashboard.action_message.${this.get('action.actionTrigger')}`, {
+            providerName: this.get('action.provider.name'),
+            documentType: i18n.t(`documentType.${this.get('action.provider.preprintWord')}.singular`),
         });
     }),
 });

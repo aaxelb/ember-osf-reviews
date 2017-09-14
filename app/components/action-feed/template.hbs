@@ -1,5 +1,5 @@
-{{#each logs key='id' as |log|}}
-    {{review-log-feed-entry log=log toDetail=toDetail}}
+{{#each actionList key='id' as |action|}}
+    {{action-feed-entry action=action toDetail=toDetail}}
 {{/each}}
 {{#if loadingPage}}
     <div class='loading'>
@@ -7,8 +7,8 @@
             <div></div>
         </div>
     </div>
-{{else if moreLogs}}
-    <div class='more-logs'>
+{{else if moreActions}}
+    <div class='see-more'>
         <a role='button' {{action 'nextPage'}}>{{t 'dashboard.see_more'}}</a>
     </div>
 {{/if}}

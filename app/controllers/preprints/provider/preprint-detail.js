@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
     node: Ember.computed.alias('model.node'),
 
     fullScreenMFR: false,
-    savingLog: false,
+    savingAction: false,
     showLicense: false,
 
     _activeFile: null,
@@ -56,7 +56,7 @@ export default Ember.Controller.extend({
         ].filter(part => !!part).join('/');
     }),
 
-    logDateLabel: Ember.computed('model.provider.reviewsWorkflow', function() {
+    actionDateLabel: Ember.computed('model.provider.reviewsWorkflow', function() {
         return this.get('model.provider.reviewsWorkflow') === PRE_MODERATION ?
             DATE_LABEL['submitted'] :
             DATE_LABEL['created'];
@@ -101,24 +101,24 @@ export default Ember.Controller.extend({
                 activeFile: fileItem
             });
         },
-        submitDecision(action, comment) {
-            this.toggleProperty('savingLog');
+        submitDecision(trigger, comment) {
+            this.toggleProperty('savingAction');
 
-            let log = this.store.createRecord('reviewLog', {
-               action: action,
-               reviewable: this.get('model'),
+            let action = this.store.createRecord('action', {
+               actionTrigger: trigger,
+               target: this.get('model'),
             });
 
             if (comment) {
-                log.comment = comment;
+                action.comment = comment;
             }
 
-            return log.save()
+            return action.save()
                 .then(() => {
                     this.transitionToRoute(`preprints.provider.moderation`);
                 })
                 .catch(() => {
-                    this.toggleProperty('savingLog');
+                    this.toggleProperty('savingAction');
                     return this.get('toast')
                         .error(this.get('i18n').t(`components.preprint-status-banner.error`));
                 });

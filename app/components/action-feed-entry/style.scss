@@ -28,13 +28,13 @@
         font-size: 20px;
     }
 
-    .log-date {
+    .action-date {
         color: $color-text-gray-light;
         font-size: 16px;
         margin-left: 30px;
     }
 
-    .log-heading {
+    .action-heading {
         color: $color-text-gray-dark;
         font-size: 18px;
         font-weight: bold;
@@ -42,7 +42,7 @@
         line-height: 23px;
     }
 
-    .log-detail {
+    .action-detail {
         margin-left: 30px;
 
         a {

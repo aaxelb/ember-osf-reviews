@@ -17,7 +17,7 @@
     "test:cover": "COVERAGE=true yarn test"
   },
   "devDependencies": {
-    "@centerforopenscience/ember-osf": "https://github.com/chrisseto/ember-osf#feature/reviews",
+    "@centerforopenscience/ember-osf": "https://github.com/aaxelb/ember-osf#feature/reviews",
     "broccoli-asset-rev": "^2.4.5",
     "ember-bootstrap": "^1.0.0-rc.1",
     "ember-cli": "~2.14.2",

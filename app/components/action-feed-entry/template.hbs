@@ -1,0 +1,19 @@
+<div class="entry-body">
+    <div class="icon {{iconClass}}">
+        <i class="fa {{icon}}"></i>
+    </div>
+    <div class="action-body">
+        <div class="action-date">
+            {{moment-format action.dateCreated 'MMMM D, Y'}}
+        </div>
+        <div class="action-heading">
+            <a href={{action.creator.links.html}}>{{action.creator.fullName}}</a>
+            {{message}}
+        </div>
+        <div class="action-detail">
+            {{#link-to 'preprints.provider.preprint-detail' action.provider action.target}}
+                {{target.target.title}}
+            {{/link-to}}
+        </div>
+    </div>
+</div>

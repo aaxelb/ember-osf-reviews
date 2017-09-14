@@ -241,15 +241,15 @@ export default Ember.Component.extend({
 
     actions: {
         submit() {
-            let action = '';
+            let trigger = '';
             if (this.get('submission.reviewsState') !== PENDING && (this.get('commentEdited') && !this.get('decisionChanged'))) {
-                action = 'edit_comment';
+                trigger = 'edit_comment';
             } else {
-                action = this.get('decision') === ACCEPTED ? 'accept' : 'reject';
+                trigger = this.get('decision') === ACCEPTED ? 'accept' : 'reject';
             }
 
             let comment = this.get('reviewerComment').trim();
-            this.sendAction('submitDecision', action, comment);
+            this.sendAction('submitDecision', trigger, comment);
         },
         cancel() {
             this.set('decision', this.get('submission.reviewsState'));
