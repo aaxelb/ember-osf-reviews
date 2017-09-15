@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     model() {
         if (!this.get('session.isAuthenticated')) return [];
         return this.get('store').query('preprint-provider', {
-            'filter[permissions]': 'view_review_logs,set_up_moderation'
+            'filter[permissions]': 'view_actions,set_up_moderation'
         }).catch(() => []); // On any error, assume no permissions to anything.
     }
 });
