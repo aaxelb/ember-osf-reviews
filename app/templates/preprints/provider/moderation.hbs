@@ -1,12 +1,12 @@
 {{moderation-list
-    statusChanged=(action "statusFilterChanged")
+    statusChanged=(action "statusChanged")
     pageChanged=(action "pageChanged")
     sortChanged=(action "sortChanged")
-    preprintRecords=model
+    submissions=model.submissions
     page=page
     sort=sort
     status=status
-    loading=loading
-    meta=meta
-    statusCounts=statusCounts
+    loading=model.isPending
+    totalPages=model.totalPages
+    statusCounts=model.statusCounts
 }}

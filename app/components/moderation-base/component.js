@@ -5,30 +5,25 @@ import Ember from 'ember';
  * Sample usage:
  * ```handlebars
  * {{moderation-base
- *    active='Settings'
+ *   provider=provider
+ *   pendingCount=pendingCount
  * }}
  * ```
  * @class moderation-base
  **/
 export default Ember.Component.extend({
-    i18n: Ember.inject.service(),
-    theme: Ember.inject.service(),
-
-    tabs: Ember.computed('i18n.locale', function(){
-        const i18n = this.get('i18n');
+    tabs: Ember.computed('pendingCount', function(){
         return [
-            { id: 1, name: i18n.t('global.moderation'), route: 'preprints.provider.moderation'},
-            { id: 2, name: i18n.t('global.settings'), route: 'preprints.provider.settings'},
+            {
+                nameKey: 'global.moderation',
+                route: 'preprints.provider.moderation',
+                hasCount: true,
+                count: this.get('pendingCount'),
+            },
+            {
+                nameKey: 'global.settings',
+                route: 'preprints.provider.settings',
+            },
         ];
     }),
-
-    actions: {
-        toggleTab: function () {
-            if (this.get('active') == 'Moderation'){
-                this.set('active', 'Settings');
-            } else {
-                this.set('active', 'Moderation');
-            }
-        }
-    }
 });

@@ -3,16 +3,15 @@
         <div class="row">
             <div class="text-left p-l-lg col-md-12">
                 {{reviews-breadcrumbs}}
-                <h1 class="provider-title">{{theme.provider.name}}</h1>
-                {{unread}}
+                <h1 class="provider-title">{{provider.name}}</h1>
                 <div id="tabTitle">
                     <ul class="nav nav-pills">
                         {{#each tabs as |tab|}}
                             {{#link-to tab.route tagName='li' href=false}}
-                                {{#link-to tab.route theme.provider.id}}
-                                    {{tab.name}}
-                                    {{#if (eq tab.id 1)}}
-                                        <small class="unread-label">{{pendingCount}}</small>
+                                {{#link-to tab.route provider.id}}
+                                    {{t tab.nameKey}}
+                                    {{#if tab.hasCount}}
+                                        <small class="unread-label">{{tab.count}}</small>
                                     {{/if}}
                                 {{/link-to}}
                             {{/link-to}}

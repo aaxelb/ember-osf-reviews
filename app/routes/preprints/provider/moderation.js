@@ -14,33 +14,28 @@ export default Base.extend({
     queryParams: {
         sort: { refreshModel: true },
         status: { refreshModel: true },
-        provider: { refreshModel: true },
         page: { refreshModel: true }
     },
 
     model(params) {
-        return this.store.query('preprint', {
+        const provider = this.modelFor('preprints.provider');
+        return provider.query('preprints', {
             'filter[reviews_state]': params.status || 'pending',
-            'filter[provider]': params.provider || this.get('theme.provider.id'),
+            'meta[reviews_state_counts]': true,
             sort: params.sort,
             page: params.page
         }).then((results) => {
             return {
-                submissions: results,
-                meta: results.get('meta')
+                submissions: results.toArray(),
+                totalPages: results.get('meta.total'),
+                statusCounts: results.get('meta.reviews_state_counts'),
             };
         });
     },
 
-    setupController(controller, { submissions, meta }) {
-        this._super(controller, submissions);
-        controller.set('meta', meta);
-
-        // reviewableCounts is undefined on page transitions if computed in the controller
-        controller.set(
-            'statusCounts',
-            this.controllerFor('preprints.provider').get('statusCounts')
-        );
+    setupController(controller, model) {
+        this._super(controller, model);
+        this.controllerFor('preprints.provider').set('pendingCount', model.statusCounts.pending);
     },
 
     actions: {

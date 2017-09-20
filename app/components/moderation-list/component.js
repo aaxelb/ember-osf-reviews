@@ -8,31 +8,47 @@ import Ember from 'ember';
  * Sample usage:
  * ```handlebars
  * {{moderation-list
- * statusChanged=(action "statusFilterChanged")
+ *   statusChanged=(action "statusChanged")
  *   pageChanged=(action "pageChanged")
  *   sortChanged=(action "sortChanged")
- *   preprintRecords=model
+ *   submissions=submissions
  *   page=page
  *   sort=sort
  *   status=status
  *   loading=loading
- *   meta=meta
+ *   totalPages=totalPages
  *   statusCounts=statusCounts
  * }}
  * ```
  * @class moderation-list
  **/
 export default Ember.Component.extend({
-    store: Ember.inject.service(),
-    theme: Ember.inject.service(),
-    i18n: Ember.inject.service(),
+    statusButtons: [
+        {
+            status: 'pending',
+            iconClass: 'fa-hourglass-o icon-pending',
+            labelKey: 'components.moderation-list.pending',
+        },
+        {
+            status: 'accepted',
+            iconClass: 'fa-check-circle-o icon-accepted',
+            labelKey: 'components.moderation-list.accepted',
+        },
+        {
+            status: 'rejected',
+            iconClass: 'fa-times-circle-o icon-rejected',
+            labelKey: 'components.moderation-list.rejected',
+        },
+    ],
 
-    //translations
-    sortOldestLabel: 'components.moderation-list.oldest',
-    sortNewestLabel: 'components.moderation-list.newest',
-    sortLabel: 'components.moderation-list.sort',
-    noSubmissionsText: 'components.moderation-list.no_submissions',
-    pendingLabel: 'components.moderation-list.pending',
-    acceptedLabel: 'components.moderation-list.accepted',
-    rejectedLabel: 'components.moderation-list.rejected',
+    sortOptions: [
+        {
+            sort: '-date_created',
+            labelKey: 'components.moderation-list.oldest',
+        },
+        {
+            sort: 'date_created',
+            labelKey: 'components.moderation-list.newest',
+        },
+    ],
 });
