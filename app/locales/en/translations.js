@@ -72,15 +72,15 @@ export default {
         },
         reviewsCommentsAnonymous: {
             title: `Moderator Comments`,
-            description: `If moderator's comments are visible to contributors, the moderator's name can can be displayed or hidden from the contributors.`,
+            description: `If moderators' comments are visible to contributors, the moderator's name can can be displayed or hidden from the contributors.`,
             options: {
                 true: {
                     title: `Anonymized Comments`,
-                    description: `All comments will be visible to the contributors of the submission, but the moderators name will not be displayed.`,
+                    description: `All comments will be visible to the contributors of the submission, but the moderator's name will not be displayed.`,
                 },
                 false: {
                     title: `Named Comments`,
-                    description: `All comments will be visible to the contributors of the submission and the moderator’s OSF profile name will be displayed.`,
+                    description: `All comments will be visible to the contributors of the submission and the moderator's OSF profile name will be displayed.`,
                 },
             }
         }
