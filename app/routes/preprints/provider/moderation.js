@@ -20,7 +20,7 @@ export default Base.extend({
     model(params) {
         const provider = this.modelFor('preprints.provider');
         return provider.query('preprints', {
-            'filter[reviews_state]': params.status || 'pending',
+            'filter[reviews_state]': params.status,
             'meta[reviews_state_counts]': true,
             sort: params.sort,
             page: params.page

@@ -12,7 +12,7 @@ export default Ember.Route.extend({
     model(params) {
         const emptyModels = {
             providers: [],
-            user: []
+            actionsList: []
         };
 
         if (!this.get('session.isAuthenticated')) {
@@ -22,10 +22,9 @@ export default Ember.Route.extend({
             providers: this.get('store').query('preprint-provider', {
                 'filter[permissions]': 'view_actions,set_up_moderation'
             }),
-            actionsList: this.get('store').findRecord('user', this.get('currentUser.currentUserId'))
-            .then(user => {
+            actionsList: this.get('currentUser.user').then(user => {
                 return user.query('actions', { page: params.page, include: 'target,provider' });
-            })
+            }),
         }).catch(() => {
              return emptyModels;
         });  // On any error, assume no permissions to anything.
