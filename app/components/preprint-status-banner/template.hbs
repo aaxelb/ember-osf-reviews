@@ -10,7 +10,11 @@
             </span>
         </div>
         <div class="recent-activity">
-            <a href={{creatorProfile}}>{{creatorName}}</a> {{t recentActivityLanguage}} {{moment-format submission.dateLastTransitioned "MMMM DD, YYYY"}}
+            {{#if noActions}}
+                {{t recentActivityLanguage}} {{moment-format submission.dateLastTransitioned "MMMM DD, YYYY"}}
+            {{else}}
+                <a href={{creatorProfile}}>{{creatorName}}</a> {{t recentActivityLanguage}} {{moment-format submission.dateLastTransitioned "MMMM DD, YYYY"}}
+            {{/if}}
         </div>
         <div class="dropdown reviewer-feedback">
             {{#bs-dropdown closeOnMenuClick=false as |dd|}}

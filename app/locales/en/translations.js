@@ -9,10 +9,12 @@ export default {
         authors: `Authors`,
         license: 'License',
         none: `None`,
-        pre_moderation: `pre-moderation`,
-        post_moderation: `post-moderation`,
         settings: `Settings`,
         moderation: `Moderation`,
+        workflows: {
+            pre_moderation: `pre-moderation`,
+            post_moderation: `post-moderation`,
+        },
     },
     documentType: {
         preprint: {
@@ -204,10 +206,13 @@ export default {
             recent_activity: {
                 pending: `submitted this {{provider.type.singular}} on`,
                 accepted: `accepted this {{provider.type.singular}} on`,
-                rejected: `rejected this {{provider.type.singular}} on`
+                rejected: `rejected this {{provider.type.singular}} on`,
+                automatic: {
+                    pending: `This {{provider.type.singular}} was submitted on`,
+                    accepted: `This {{provider.type.singular}} was automatically accepted on`,
+                },
             },
             message: {
-                base: `{{name}} uses {{reviewsWorkflow}}, therefore this preprint is`,
                 pending_pre: `not publicly available or searchable until approved by a moderator`,
                 pending_post: `publicly available and searchable but is subject to removal by a moderator`,
                 accepted: `publicly available and searchable`,
