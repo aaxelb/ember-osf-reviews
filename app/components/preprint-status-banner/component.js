@@ -123,7 +123,7 @@ export default Ember.Component.extend({
     creatorProfile: Ember.computed.alias('latestAction.creator.profileURL'),
     creatorName: Ember.computed.alias('latestAction.creator.fullName'),
 
-    didReceiveAttrs() {
+    init() {
         this.get('submission.actions').then(actions => {
             if (actions.length) {
                 if (this.get('submission.reviewsState') !== PENDING) {
@@ -255,7 +255,7 @@ export default Ember.Component.extend({
             }
 
             let comment = this.get('reviewerComment').trim();
-            this.sendAction('submitDecision', trigger, comment, this.get('decision'));
+            this.get('submitDecision')(trigger, comment, this.get('decision'));
         },
         cancel() {
             this.set('decision', this.get('submission.reviewsState'));
