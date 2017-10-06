@@ -4,6 +4,29 @@ import Ember from 'ember';
  * @submodule routes
  */
 
+// TODO: add this to osf-model, remove ember-data-has-many-query dependency?
+function query(model, propertyName, params) {
+    const reference = model.hasMany(propertyName);
+    const store = reference.store;
+    return new Ember.RSVP.Promise((resolve, reject) => {
+        const url = reference.hasManyRelationship.link;
+        Ember.$.ajax(url, {
+            data: params,
+            xhrFields: {
+                withCredentials: true
+            },
+        }).then(payload => {
+            store.pushPayload(payload);
+            const records = payload.data.map(datum => store.peekRecord(datum.type, datum.id));
+            resolve(Ember.ArrayProxy.create({
+                content: records,
+                meta: payload.meta,
+                links: payload.links,
+            }));
+        }, reject);
+    });
+}
+
 /**
  * @class provider Route Handler
  */
@@ -18,17 +41,16 @@ export default Ember.Route.extend({
 
     model(params) {
         const provider = this.modelFor('preprints.provider');
-        // Pass `true` to force reloading (added in cos-forks/ember-data-has-many-query)
-        return provider.query('preprints', {
+        return query(provider, 'preprints', {
             'filter[reviews_state]': params.status,
             'meta[reviews_state_counts]': true,
             sort: params.sort,
             page: params.page
-        }, true).then((results) => {
+        }).then(response => {
             return {
-                submissions: results.toArray(),
-                totalPages: results.get('meta.total'),
-                statusCounts: results.get('meta.reviews_state_counts'),
+                submissions: response.toArray(),
+                totalPages: response.meta.total,
+                statusCounts: response.meta.reviews_state_counts,
             };
         });
     },
