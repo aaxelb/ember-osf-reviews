@@ -9,11 +9,7 @@
         <div class="action-heading">
             <a href={{action.creator.links.html}}>{{action.creator.fullName}}</a>
             {{#if action.provider.isPending}}
-                <span class="ball-pulse ball-dark" aria-label="Loading data">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </span>
+                {{loading-indicator}}
             {{else}}
                 {{message}}
             {{/if}}

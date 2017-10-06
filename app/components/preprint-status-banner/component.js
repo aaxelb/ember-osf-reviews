@@ -98,6 +98,7 @@ export default Ember.Component.extend({
 
     classNames: ['preprint-status-component'],
 
+    loadingActions: true,
     noActions: false,
 
     reviewsWorkflow: Ember.computed.alias('submission.provider.reviewsWorkflow'),
@@ -127,7 +128,7 @@ export default Ember.Component.extend({
         this.get('submission.actions').then(actions => {
             if (actions.length) {
                 if (this.get('submission.reviewsState') !== PENDING) {
-                    const comment = this.get('latestAction.comment');
+                    const comment = actions.get('firstObject.comment');
                     this.set('initialReviewerComment', comment);
                     this.set('reviewerComment', comment);
                     this.set('decision', this.get('submission.reviewsState'));
@@ -140,6 +141,7 @@ export default Ember.Component.extend({
             } else {
                 this.set('noActions', true);
             }
+            this.set('loadingActions', false);
         });
 
         return this._super(...arguments);
@@ -262,5 +264,4 @@ export default Ember.Component.extend({
             this.set('reviewerComment', this.get('initialReviewerComment'));
         }
     }
-
 });

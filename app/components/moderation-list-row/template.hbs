@@ -3,12 +3,8 @@
         <i class="fa fa-lg {{get iconClass submission.reviewsState}} status-icon"></i>
         <div title={{submission.title}} class="submission-info">
             <div class="submission-title">{{submission.title}}</div>
-            {{#if submission.node.contributors.isPending}}
-                <div class="ball-pulse ball-dark">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
+            {{#if (or submission.node.isPending submission.node.contributors.isPending)}}
+                {{loading-indicator}}
             {{else}}
                 <div class="submission-body">
                     {{#if (eq submission.reviewsState 'pending')}}

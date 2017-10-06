@@ -29,15 +29,11 @@
                     {{/bs-dropdown}}
                 </div>
                 {{#if loading}}
-                    <div class="text-center m-b-lg p-v-md ball-pulse ball-dark" aria-label="Loading data">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+                    {{loading-indicator classes='text-center m-b-lg p-v-md'}}
                 {{else}}
                     <div class="moderation-list-body">
                         {{#if (eq submissions.length 0)}}
-                            <div class="text-center p-v-md ball-pulse ball-dark moderation-list-row" aria-label="Loading data">
+                            <div class="text-center p-v-md moderation-list-row">
                                 {{t 'components.moderation-list.no_submissions'}}
                             </div>
                         {{else}}

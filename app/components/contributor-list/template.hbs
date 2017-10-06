@@ -1,9 +1,5 @@
 {{#if contributors.isPending}}
-    <div class="ball-pulse">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+    {{loading-indicator}}
 {{else}}
     {{#each bibliographicContributors as |contributor| ~}}
         <li>
