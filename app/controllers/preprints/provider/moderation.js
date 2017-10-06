@@ -5,18 +5,28 @@ export default Ember.Controller.extend({
     page: 1,
     status: 'pending',
     sort: '-date_last_transitioned',
+    loading: true,
 
     actions: {
         statusChanged(status) {
-            this.set('status', status);
-            this.set('page', 1);
+            this.setProperties({
+                status,
+                page: 1,
+                loading: true,
+            });
         },
         pageChanged(page) {
-            this.set('page', page);
+            this.setProperties({
+                page,
+                loading: true,
+            });
         },
         sortChanged(sort) {
-            this.set('sort', sort);
-            this.set('page', 1);
+            this.setProperties({
+                sort,
+                page: 1,
+                loading: true,
+            });
         },
     }
 });
