@@ -26,9 +26,7 @@ function query(model, propertyName, params) {
                 resolve(records);
             }, reject);
         } else {
-            const message = `Could not find a link for '${propertyName}' relationship`;
-            console.error(message, 'on model:\n', model);
-            reject(message);
+            reject(`Could not find a link for '${propertyName}' relationship`);
         }
     });
 
