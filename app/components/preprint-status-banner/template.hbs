@@ -11,7 +11,7 @@
         </div>
         <div class="recent-activity">
             {{#if loadingActions}}
-                {{loading-indicator classes='text-center m-b-lg p-v-md'}}
+                {{loading-indicator classes='ball-dark text-center'}}
             {{else}}
                 {{#if noActions}}
                     {{t recentActivityLanguage}} {{moment-format submission.dateLastTransitioned "MMMM DD, YYYY"}}

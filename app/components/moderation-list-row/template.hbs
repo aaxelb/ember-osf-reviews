@@ -4,7 +4,7 @@
         <div title={{submission.title}} class="submission-info">
             <div class="submission-title">{{submission.title}}</div>
             {{#if (or submission.node.isPending submission.node.contributors.isPending)}}
-                {{loading-indicator}}
+                {{loading-indicator classes='ball-dark'}}
             {{else}}
                 <div class="submission-body">
                     {{#if (eq submission.reviewsState 'pending')}}
