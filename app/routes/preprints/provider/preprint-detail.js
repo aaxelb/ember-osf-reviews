@@ -5,7 +5,7 @@ export default Ember.Route.extend({
     currentUser: Ember.inject.service(),
 
     model(params) {
-        return this.store.findRecord('preprint', params.preprint_id, {include: ['node', 'provider', 'license', 'actions']});
+        return this.store.findRecord('preprint', params.preprint_id, {include: ['node', 'license', 'actions']});
     },
 
     renderTemplate(controller, model) {

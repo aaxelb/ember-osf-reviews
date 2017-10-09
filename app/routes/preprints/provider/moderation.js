@@ -9,22 +9,30 @@ function query(model, propertyName, params) {
     const reference = model.hasMany(propertyName);
     const store = reference.store;
     const promise = new Ember.RSVP.Promise((resolve, reject) => {
-        const url = reference.hasManyRelationship.link;
-        Ember.$.ajax(url, {
-            data: params,
-            xhrFields: {
-                withCredentials: true
-            },
-        }).then(payload => {
-            store.pushPayload(payload);
-            const records = payload.data.map(datum => store.peekRecord(datum.type, datum.id));
-            records.meta = payload.meta;
-            records.links = payload.links;
-            resolve(records);
-        }, reject);
+        // HACK: ember-data discards/ignores the link if an object on the belongsTo side came first.
+        // In that case, grab the link where we expect it from OSF's API
+        const url = reference.link() || model.get(`links.relationships.${propertyName}.links.related.href`);
+        if (url) {
+            Ember.$.ajax(url, {
+                data: params,
+                xhrFields: {
+                    withCredentials: true
+                },
+            }).then(payload => {
+                store.pushPayload(payload);
+                const records = payload.data.map(datum => store.peekRecord(datum.type, datum.id));
+                records.meta = payload.meta;
+                records.links = payload.links;
+                resolve(records);
+            }, reject);
+        } else {
+            const message = `Could not find a link for '${propertyName}' relationship`;
+            console.error(message, 'on model:\n', model);
+            reject(message);
+        }
     });
 
-    const ArrayPromiseProxy = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin)
+    const ArrayPromiseProxy = Ember.ArrayProxy.extend(Ember.PromiseProxyMixin);
     return ArrayPromiseProxy.create({ promise });
 }
 
@@ -46,7 +54,7 @@ export default Ember.Route.extend({
             'filter[reviews_state]': params.status,
             'meta[reviews_state_counts]': true,
             sort: params.sort,
-            page: params.page
+            page: params.page,
         }).then(response => {
             return {
                 submissions: response.toArray(),
